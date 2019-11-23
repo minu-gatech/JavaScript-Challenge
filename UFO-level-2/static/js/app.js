@@ -15,13 +15,6 @@ var tableData = data;
 // Selecting tbody element of html
 var tbody = d3.select("tbody");
 
-/*function addRow1(item){
-    var row = tbody.append("tr");
-    Object.entries(item).forEach(function ([key,value]){
-        row.append("td").text(value);
-    })     
-}*/
-
 // Function to add - UFO DATA or filtered data - to HTML Table
 function addRow(item){
     // Creating a new row into table element
@@ -37,30 +30,38 @@ tableData.forEach(addRow);
 
 
 
-//// Search Filter ////
+////////////////////////////////////////////////////
+/* Level 2: Multiple Search Categories (Optional) */
+////////////////////////////////////////////////////
+
+//// Using multiple input tags and/or select dropdowns, 
+//// write JavaScript code so the user can to set multiple filters and 
+//// search for UFO sightings using the following criteria based on the table columns
+
+
 
 function selectedOption(searchOption, inputValue)
 {
   console.log(searchOption, inputValue);
- 
+  // Filter the data
   var filteredData = tableData.filter(item => item[searchOption] === inputValue)
   console.log(filteredData);
-  
+  //Clear the table
   tbody.html("");
-  
+  // Calls addroe function for each item of filteredData
   filteredData.forEach(addRow);
-  
-  if (searchOption === ''){
+  // Id default option is selected, shows all data
+  if (searchOption === 'defaultoption'){
     tableData.forEach(addRow);
+    // Input box gets clear once default option is selected
+    d3.select("#inputBox").property("value","");
   }
-
 }
 
 
 function getData(newValue) {
-
+    // Fetching user input
     var dataInputField = d3.select("#inputBox");
-
     var inputValue = dataInputField.property("value");
     console.log(inputValue);
 
@@ -88,7 +89,7 @@ function getData(newValue) {
             console.log(searchValue);
             break;  
         case "defaultoption":
-            searchValue = '';
+            searchValue = 'defaultoption';
             inputValue = '';    
             break;
         default:
@@ -97,6 +98,7 @@ function getData(newValue) {
             
     }   
     console.log(searchValue, inputValue);
+    // Calling function with selected option and user input value
     selectedOption(searchValue, inputValue);
   }
   

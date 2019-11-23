@@ -15,12 +15,6 @@ var tableData = data;
 // Selecting tbody element of html
 var tbody = d3.select("tbody");
 
-/*function addRow1(item){
-    var row = tbody.append("tr");
-    Object.entries(item).forEach(function ([key,value]){
-        row.append("td").text(value);
-    })     
-}*/
 
 // Function to add - UFO DATA or filtered data - to HTML Table
 function addRow(item){
@@ -66,17 +60,15 @@ tbody.html("");
 // Calling a function for each item of an array 'filteredData'
 filteredData.forEach(addRow);
 
-// Show a message if there is no match
-/*var noFilteredData = tableData.filter(item => item.datetime != inputValue);
-console.log(noFilteredData)
-if (noFilteredData == '')
+// Show a message if there is input field is empty
+if (inputValue == '')
 {
-    tbody.append("tr").append("td").text("No Match....Try Again!")
-}*/
+    tbody.append("tr").append("td").text("Please enter the search information!")
+}
  
 }   // Anonymous Function Ends
 );  // On() Method Ends
 
 
-
+    
 
